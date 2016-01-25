@@ -1,5 +1,4 @@
 import React from 'react';
-import AppBar from 'material-ui/lib/app-bar';
 import MyTheme from './theme';
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
 import ThemeDecorator from 'material-ui/lib/styles/theme-decorator';
@@ -23,11 +22,12 @@ export default class App extends React.Component {
 
   render() {
     return <div>
-      <Router history={browserHistory}>
+      <Shell />
+      /*<Router history={browserHistory}>
         <Route path="/" component={Shell}>
           <Route path="login" component={Login}></Route>
         </Route>
-      </Router>
+      </Router>*/
     </div>
   }
 }
