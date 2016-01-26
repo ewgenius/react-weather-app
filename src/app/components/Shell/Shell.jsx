@@ -4,29 +4,29 @@ import IconButton from 'material-ui/lib/icon-button';
 import NavigationMenu from 'material-ui/lib/svg-icons/navigation/menu';
 import LeftNav from 'material-ui/lib/left-nav';
 import MenuItem from 'material-ui/lib/menus/menu-item';
+import Firebase from 'firebase';
 
 import './Shell.scss';
 
 export default class Shell extends React.Component {
-  getInitialState() {
-    return {
-      sidebarOpen: false
-    };
+  constructor(props) {
+    super(props);
+    this.firebase = new Firebase("https://react-weather-app.firebaseio.com/items/");
   }
 
   handleToggle() {
-    console.log(this);
+    this.firebase.authWithOAuthPopup("google", function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
+      }
+    });
   }
 
   render() {
     return <div className="Shell">
-      <button onClick={this.handleToggle}></button>
-      /*<AppBar
-        iconElementLeft={<IconButton onClick={this.handleToggle}><NavigationMenu/></IconButton>}/>
-      <LeftNav open={this.state.sidebarOpen}>
-        <MenuItem>Menu Item</MenuItem>
-        <MenuItem>Menu Item 2</MenuItem>
-      </LeftNav>*/
+      <button onClick={this.handleToggle.bind(this)}>test</button>
     </div>
   }
 }
